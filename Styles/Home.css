@@ -1,11 +1,18 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,110.1,100..900;1,110.1,100..400&500&600&700&800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Petit+Formal+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+
+
 :root {
     --bg-color: #050505;
     --text-color: #f6f7fb;
     --accent-color: #ff4500;
     --surface-color: rgba(255, 255, 255, 0.02);
     --border-color: rgba(255, 255, 255, 0.1);
-    --font-heading: 'Montserrat', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Archivo', sans-serif;
+    --font-body: 'Petit Formal Script', cursive;
+    --arabic-font: 'Almarai', sans-serif;
     --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -20,6 +27,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -194,6 +205,8 @@ body {
 
 .hero-desc {
     font-size: 1.1rem;
+    font-family: var(--font-heading);
+    font-weight: 400;
     line-height: 1.7;
     color: var(--text-color);
     opacity: 0.8;
@@ -297,6 +310,60 @@ body {
     opacity: 0.7;
 }
 
+.about {
+    padding: 10rem 5%;
+    position: relative;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+}
+
+.about-card {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: 4rem 3rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background: var(--accent-color);
+    transition: var(--transition);
+}
+
+.about-card:hover::before {
+    height: 100%;
+}
+
+.about-card:hover {
+    transform: translateX(10px);
+    background: var(--border-color);
+}
+
+.about-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.about-card p {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    line-height: 1.7;
+    opacity: 0.7;
+}
+
 .services {
     padding: 10rem 5%;
     position: relative;
@@ -355,6 +422,7 @@ body {
 }
 
 .service-card p {
+    font-family: var(--font-heading);
     line-height: 1.7;
     opacity: 0.7;
 }
@@ -383,6 +451,7 @@ body {
 }
 
 .contact-info p {
+    font-family: var(--font-heading);
     font-size: 1.1rem;
     line-height: 1.8;
     opacity: 0.8;
