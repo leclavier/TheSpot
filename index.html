@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Spot | Digital Marketing Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Google Fonts: I want main font : Archivo. -->
+    <link rel="stylesheet" href="/Styles/Home.css">
+</head>
+<body>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    
+    <nav class="navbar fade-in">
+        <a href="#" class="logo">
+            <img src="/Assets/Primary_Logo.svg" alt="The Spot Logo" class="svg-logo">
+        </a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-controls">
+            <button class="lang-btn">العربية</button>
+            <button id="theme-toggle" class="theme-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content fade-in">
+            <span class="subtitle">Where Brands Take the Spotlight</span>
+            <h1 class="bold-title">EVERY BRAND<br>DESERVES ITS<br><span class="highlight">MOMENT.</span></h1>
+            <p class="hero-desc">We create marketing that doesn't just look good; it drives awareness, engagement, and exponential business growth.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+                <a href="#services" class="btn btn-outline">Our Services</a>
+            </div>
+        </div>
+        <div class="hero-visual fade-in">
+            <img src="/Assets/Icon.svg" alt="Icon" class="svg-logo hero-icon">
+            <div class="glass-card stat-card">
+                <h3>+150%</h3>
+                <p>Growth in Engagement</p>
+            </div>
+        </div>
+    </header>
+
+    <section id="services" class="services">
+        <h2 class="section-title fade-in">OUR EXPERTISE</h2>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="card-icon"></div>
+                <h3>Brand Strategy</h3>
+                <p>Defining your unique position in the market with data-driven insights.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="card-icon"></div>
+                <h3>Digital Campaigns</h3>
+                <p>High-conversion ad strategies tailored for your target audience.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="card-icon"></div>
+                <h3>Market Disruption</h3>
+                <p>Bold moves and creative direction that put you ahead of the curve.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact fade-in">
+        <div class="contact-wrapper glass-card">
+            <div class="contact-info">
+                <h2>Let's build<br>the future.</h2>
+                <p>Ready to dominate your market? Reach out to us today and let's create a tailored growth strategy.</p>
+            </div>
+            <form class="contact-form">
+                <div class="input-group">
+                    <input type="text" id="name" required placeholder=" ">
+                    <label for="name">Full Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" required placeholder=" ">
+                    <label for="email">Email Address</label>
+                </div>
+                <div class="input-group">
+                    <textarea id="message" required placeholder=" " rows="4"></textarea>
+                    <label for="message">Your Vision</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Submit Request</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="/Scripts/Main.js"></script>
+</body>
+</html>
