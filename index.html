@@ -6,35 +6,82 @@
     <title>The Spot | Digital Marketing Agency</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://kit.fontawesome.com/5b59657aa2.js" crossorigin="anonymous"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,110.1,100..900;1,110.1,100..900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Petit+Formal+Script&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
-
-    </style>
+    <link rel="preconnect" href="https://kit.fontawesome.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,110.1,100..900;1,110.1,100..900&family=Petit+Formal+Script&family=Almarai:wght@300;400;700;800&display=swap">
+    <script src="https://kit.fontawesome.com/5b59657aa2.js" crossorigin="anonymous" defer></script>
     <link rel="stylesheet" href="Styles/Home.css">
 </head>
 <body>
     <div class="shape shape-1"></div>
     <div class="shape shape-2"></div>
-    
-    <nav class="navbar fade-in">
+
+    <nav class="navbar fade-in" id="navbar">
         <a href="#" class="logo">
             <img src="Assets/Primary_Logo.svg" alt="The Spot Logo" class="svg-logo">
         </a>
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="#services">Services</a>
+            <a href="#process">Process</a>
             <a href="#contact">Contact</a>
         </div>
         <div class="nav-controls">
-            
-            <button id="theme-toggle" class="theme-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="moon-icon">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="sun-icon">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+                </svg>
+            </button>
+            <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </div>
     </nav>
+
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <aside class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav-top">
+            <img src="Assets/Primary_Logo.svg" alt="The Spot Logo" class="svg-logo mobile-nav-logo">
+            <button id="mobile-nav-close" class="mobile-nav-close" aria-label="Close menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 6l12 12M18 6L6 18"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="mobile-nav-links">
+            <a href="#about" class="mobile-link">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>About</span>
+            </a>
+            <a href="#services" class="mobile-link">
+                <i class="fa-solid fa-toolbox"></i>
+                <span>Services</span>
+            </a>
+            <a href="#process" class="mobile-link">
+                <i class="fa-solid fa-route"></i>
+                <span>Process</span>
+            </a>
+            <a href="#contact" class="mobile-link">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Contact</span>
+            </a>
+        </div>
+        <div class="mobile-nav-bottom">
+            <a href="#contact" class="btn btn-primary w-100">Get Started</a>
+            <div class="mobile-nav-socials">
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </aside>
 
     <header class="hero">
         <div class="hero-content fade-in">
@@ -47,7 +94,9 @@
             </div>
         </div>
         <div class="hero-visual fade-in">
-            <img src="Assets/Icon.svg" alt="Icon" class="svg-logo hero-icon">
+            <div class="hero-visual-frame">
+                <img src="Assets/Icon.svg" alt="The Spot icon" class="svg-logo hero-icon">
+            </div>
             <div class="glass-card stat-card">
                 <h3 class="hero-150">+150%</h3>
                 <p style="font-family: var(--font-heading);">Growth in Engagement</p>
@@ -59,26 +108,47 @@
         <h2 class="section-title fade-in">ABOUT US</h2>
         <div class="about-grid">
           <div class="about-card fade-in">
-            <div class="card-icon">
-                <i class="fa-solid fa-layer-group"></i>
+            <div class="icon-box">
+                <i class="fa-solid fa-bullseye"></i>
             </div>
             <h3>Our Mission</h3>
             <p>To empower brands with innovative marketing strategies that drive measurable growth and lasting impact.</p>
           </div>
           <div class="about-card fade-in">
-            <div class="card-icon">
-                <i class="fa-solid fa-chart-pie"></i>
+            <div class="icon-box">
+                <i class="fa-solid fa-compass"></i>
             </div>
             <h3>Our Vision</h3>
             <p>To be the leading digital marketing agency recognized for creativity, results, and client satisfaction.</p>
           </div>
           <div class="about-card fade-in">
-            <div class="card-icon">
+            <div class="icon-box">
                 <i class="fa-solid fa-handshake"></i>
-                </div>
+            </div>
             <h3>Our Values</h3>
             <p>Integrity, innovation, collaboration, and a relentless focus on delivering value to our clients.</p>
           </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item fade-in">
+                <h3 data-target="180" data-suffix="+">0</h3>
+                <p>Campaigns Launched</p>
+            </div>
+            <div class="stat-item fade-in">
+                <h3 data-target="42" data-suffix="">0</h3>
+                <p>Brands Partnered</p>
+            </div>
+            <div class="stat-item fade-in">
+                <h3 data-target="98" data-suffix="%">0</h3>
+                <p>Client Retention</p>
+            </div>
+            <div class="stat-item fade-in">
+                <h3 data-target="12" data-suffix="">0</h3>
+                <p>Industries Served</p>
+            </div>
         </div>
     </section>
 
@@ -86,21 +156,21 @@
         <h2 class="section-title fade-in">OUR EXPERTISE</h2>
         <div class="services-grid">
             <div class="service-card fade-in">
-                <div class="card-icon">
+                <div class="icon-box">
                     <i class="fa-solid fa-diagram-project"></i>
                 </div>
                 <h3>Brand Strategy</h3>
                 <p>Defining your unique position in the market with data-driven insights.</p>
             </div>
             <div class="service-card fade-in">
-                <div class="card-icon">
-                    <i class="fa-solid fa-sliders"></i>
+                <div class="icon-box">
+                    <i class="fa-solid fa-bullhorn"></i>
                 </div>
                 <h3>Digital Campaigns</h3>
                 <p>High-conversion ad strategies tailored for your target audience.</p>
             </div>
             <div class="service-card fade-in">
-                <div class="card-icon">
+                <div class="icon-box">
                     <i class="fa-solid fa-arrow-up-right-dots"></i>
                 </div>
                 <h3>Market Disruption</h3>
@@ -108,14 +178,82 @@
             </div>
         </div>
     </section>
-    
+
+    <section id="process" class="process">
+        <h2 class="section-title fade-in">HOW WE WORK</h2>
+        <div class="process-grid">
+            <div class="process-step fade-in">
+                <div class="process-number"></div>
+                <div class="icon-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <h3>Discover</h3>
+                <p>We study your market, audience, and competitors to find your true opening.</p>
+            </div>
+            <div class="process-step fade-in">
+                <div class="process-number"></div>
+                <div class="icon-box">
+                    <i class="fa-solid fa-compass-drafting"></i>
+                </div>
+                <h3>Strategize</h3>
+                <p>We build a plan around what will actually move your numbers.</p>
+            </div>
+            <div class="process-step fade-in">
+                <div class="process-number"></div>
+                <div class="icon-box">
+                    <i class="fa-solid fa-rocket"></i>
+                </div>
+                <h3>Execute</h3>
+                <p>Our team designs, launches, and manages every campaign end to end.</p>
+            </div>
+            <div class="process-step fade-in">
+                <div class="process-number"></div>
+                <div class="icon-box">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3>Measure</h3>
+                <p>We track results closely and optimize every week for better performance.</p>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="contact fade-in">
         <div class="contact-wrapper glass-card">
             <div class="contact-info">
                 <h2>Let's build<br>the future.</h2>
                 <p>Ready to dominate your market? Reach out to us today and let's create a tailored growth strategy.</p>
+                <div class="contact-methods">
+                    <a class="contact-method" href="mailto:team@thespotsa.co">
+                        <div class="icon-box icon-box-sm">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="contact-method-text">
+                            <span>Email</span>
+                            <p>team@thespotsa.co</p>
+                        </div>
+                    </a>
+                    <a class="contact-method" href="tel:+966566620150">
+                        <div class="icon-box icon-box-sm">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="contact-method-text">
+                            <span>Phone</span>
+                            <p>+966 56 662 0150</p>
+                        </div>
+                    </a>
+                    <div class="contact-method">
+                        <div class="icon-box icon-box-sm">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="contact-method-text">
+                            <span>Location</span>
+                            <p>Riyadh, Saudi Arabia</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="response-time">We typically respond within 24 hours.</p>
             </div>
-            <form action="mailto:team@thespotsa.co" method="post" enctype="text/plain" class="contact-form">
+            <form action="mailto:team@thespotsa.co" method="post" enctype="text/plain" class="contact-form" id="contact-form">
                 <div class="input-group">
                     <input type="text" id="name" required placeholder=" ">
                     <label for="name">Full Name</label>
@@ -128,17 +266,46 @@
                     <textarea id="message" required placeholder=" " rows="4"></textarea>
                     <label for="message">Your Vision</label>
                 </div>
-                <div class="mailus">
-                    <p>Prefer to email us directly? <a style="color: var(--accent-color)" href="mailto:team@thespotsa.co">Send us an email</a></p>
-                    <p>We typically respond within 24 hours.</p>
-                </div>
-                <div class="call-us">
-                    <p>Or call us at <a style="color: var(--accent-color)" href="tel:+966 56 662 0150">+966 56 662 0150</a></p>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Submit Request</button>
+                <button type="submit" class="btn btn-primary w-100">
+                    <span>Submit Request</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+                <p class="form-status" id="form-status" aria-live="polite"></p>
             </form>
         </div>
     </section>
+
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="Assets/Primary_Logo.svg" alt="The Spot Logo" class="svg-logo footer-logo">
+                <p>A digital marketing agency helping brands find their moment and grow with intent.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#process">Process</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Get in Touch</h4>
+                <a href="mailto:team@thespotsa.co">team@thespotsa.co</a>
+                <a href="tel:+966566620150">+966 56 662 0150</a>
+                <span>Riyadh, Saudi Arabia</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Spot. All rights reserved.</p>
+            <p>Crafted with intention.</p>
+        </div>
+    </footer>
 
     <script src="Scripts/Main.js"></script>
 </body>
