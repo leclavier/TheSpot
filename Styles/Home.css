@@ -7,7 +7,7 @@
 :root {
     --bg-color: #050505;
     --text-color: #f6f7fb;
-    --accent-color: #ff4500;
+    --accent-color: #d34d27;
     --surface-color: rgba(255, 255, 255, 0.02);
     --border-color: rgba(255, 255, 255, 0.1);
     --font-heading: 'Archivo', sans-serif;
@@ -18,8 +18,8 @@
 
 .light-theme {
     --bg-color: #f6f7fb;
-    --text-color: #050505;
-    --surface-color: #ffffff;
+    --text-color: #1D1C1A;
+    --surface-color: #F6F7FB;
     --border-color: #e0e0e0;
 }
 
@@ -31,6 +31,10 @@
 
 html {
     scroll-behavior: smooth;
+}
+
+.hero-150 {
+    color: #d34027;
 }
 
 body {
@@ -72,16 +76,32 @@ body {
 }
 
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 5%;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    z-index: 1000;
+}
+
+.nav-controls {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.navbar logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.about-card:hover .about-card::before {
+    height: 100%;
 }
 
 .logo img {
@@ -129,23 +149,6 @@ body {
     display: flex;
     gap: 1.5rem;
     align-items: center;
-}
-
-.lang-btn {
-    background: none;
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
-    padding: 0.5rem 1.5rem;
-    cursor: pointer;
-    font-family: var(--font-heading);
-    transition: var(--transition);
-    border-radius: 0;
-    font-weight: 600;
-}
-
-.lang-btn:hover {
-    background: var(--text-color);
-    color: var(--bg-color);
 }
 
 .theme-btn {
@@ -310,6 +313,22 @@ body {
     opacity: 0.7;
 }
 
+.card-icon {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    margin-bottom: 1.5rem !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+.card-icon i {
+    font-size: 2rem !important;
+    color: var(--accent-color) !important;
+    display: inline-block !important;
+    color: #d34027 !important;
+}
+
 .about {
     padding: 10rem 5%;
     position: relative;
@@ -324,8 +343,10 @@ body {
 .about-card {
     background: var(--surface-color);
     border: 1px solid var(--border-color);
+    border-radius: 13px;
     padding: 4rem 3rem;
     transition: var(--transition);
+    box-shadow: 0px 7px 13px rgba(151, 148, 146, 0.3);
     position: relative;
 }
 
@@ -337,6 +358,20 @@ body {
     width: 4px;
     height: 0;
     background: var(--accent-color);
+    border-radius: 13px 0 0 13px;
+    transition: var(--transition);
+}
+
+about-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-color);
+    opacity: 0.05;
+    border-radius: 13px;
     transition: var(--transition);
 }
 
@@ -347,6 +382,7 @@ body {
 .about-card:hover {
     transform: translateX(10px);
     background: var(--border-color);
+    border-radius: 13px;
 }
 
 .about-card h3 {
@@ -388,8 +424,10 @@ body {
 .service-card {
     background: var(--surface-color);
     border: 1px solid var(--border-color);
+    border-radius: 13px;
     padding: 4rem 3rem;
     transition: var(--transition);
+    box-shadow: 0px 7px 13px rgba(151, 148, 146, 0.3);
     position: relative;
 }
 
@@ -401,6 +439,7 @@ body {
     width: 4px;
     height: 0;
     background: var(--accent-color);
+    border-radius: 13px 0 0 13px;
     transition: var(--transition);
 }
 
@@ -411,6 +450,7 @@ body {
 .service-card:hover {
     transform: translateX(10px);
     background: var(--border-color);
+    border-radius: 13px;
 }
 
 .service-card h3 {
@@ -461,6 +501,20 @@ body {
     display: flex;
     flex-direction: column;
     gap: 3rem;
+}
+
+.mailus {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    opacity: 0.8;
+}
+
+.call-us {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    opacity: 0.8;
 }
 
 .input-group {
