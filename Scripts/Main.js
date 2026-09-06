@@ -1,7 +1,7 @@
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
-
 const savedTheme = localStorage.getItem('theme');
+
 if (savedTheme === 'light') {
     body.classList.add('light-theme');
 }
@@ -14,30 +14,6 @@ themeToggle.addEventListener('click', () => {
         localStorage.setItem('theme', 'dark');
     }
 });
-
-const navbar = document.getElementById('navbar');
-let lastScrollState = false;
-
-function updateNavbar() {
-    const shouldPin = window.scrollY > 40;
-    if (shouldPin !== lastScrollState) {
-        navbar.classList.toggle('scrolled', shouldPin);
-        lastScrollState = shouldPin;
-    }
-}
-
-let scrollTicking = false;
-window.addEventListener('scroll', () => {
-    if (!scrollTicking) {
-        window.requestAnimationFrame(() => {
-            updateNavbar();
-            scrollTicking = false;
-        });
-        scrollTicking = true;
-    }
-}, { passive: true });
-
-updateNavbar();
 
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.getElementById('mobile-nav');
@@ -115,7 +91,6 @@ function animateCount(el) {
             requestAnimationFrame(tick);
         }
     }
-
     requestAnimationFrame(tick);
 }
 
