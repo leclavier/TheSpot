@@ -1,72 +1,68 @@
 const themeToggle = document.getElementById('theme-toggle');
+const langToggle = document.getElementById('lang-toggle');
 const body = document.body;
-const savedTheme = localStorage.getItem('theme');
+const htmlElem = document.documentElement;
 
+const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'light') {
     body.classList.add('light-theme');
 }
 
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('light-theme');
-    if (body.classList.contains('light-theme')) {
-        localStorage.setItem('theme', 'light');
-    } else {
-        localStorage.setItem('theme', 'dark');
-    }
+    localStorage.setItem('theme', body.classList.contains('light-theme') ? 'light' : 'dark');
 });
 
-const hamburger = document.getElementById('hamburger');
-const mobileNav = document.getElementById('mobile-nav');
-const navOverlay = document.getElementById('nav-overlay');
-const mobileNavClose = document.getElementById('mobile-nav-close');
-const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-nav-bottom .btn');
+const savedLang = localStorage.getItem('lang') || 'en';
+setLanguage(savedLang);
 
-function openMobileNav() {
-    mobileNav.classList.add('open');
-    navOverlay.classList.add('open');
-    hamburger.classList.add('open');
-    hamburger.setAttribute('aria-expanded', 'true');
-    body.classList.add('no-scroll');
+function setLanguage(lang) {
+    if (lang === 'ar') {
+        htmlElem.setAttribute('dir', 'rtl');
+        htmlElem.setAttribute('lang', 'ar');
+        langToggle.textContent = 'EN';
+        localStorage.setItem('lang', 'ar');
+    } else {
+        htmlElem.setAttribute('dir', 'ltr');
+        htmlElem.setAttribute('lang', 'en');
+        langToggle.textContent = 'AR';
+        localStorage.setItem('lang', 'en');
+    }
 }
 
-function closeMobileNav() {
-    mobileNav.classList.remove('open');
-    navOverlay.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    body.classList.remove('no-scroll');
-}
+langToggle.addEventListener('click', () => {
+    const currentLang = htmlElem.getAttribute('lang');
+    setLanguage(currentLang === 'ar' ? 'en' : 'ar');
+});
 
-hamburger.addEventListener('click', () => {
-    if (mobileNav.classList.contains('open')) {
-        closeMobileNav();
-    } else {
-        openMobileNav();
+const navbar = document.getElementById('navbar');
+let ticking = false;
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            if (window.scrollY > 40) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            ticking = false;
+        });
+        ticking = true;
     }
-});
-
-mobileNavClose.addEventListener('click', closeMobileNav);
-navOverlay.addEventListener('click', closeMobileNav);
-
-mobileLinks.forEach(link => {
-    link.addEventListener('click', closeMobileNav);
-});
-
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && mobileNav.classList.contains('open')) {
-        closeMobileNav();
-    }
-});
+}, { passive: true });
 
 const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.15
+    threshold: 0.1
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        entry.target.classList.toggle('show', entry.isIntersecting);
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
     });
 }, observerOptions);
 
@@ -74,43 +70,28 @@ document.querySelectorAll('.fade-in').forEach(el => {
     observer.observe(el);
 });
 
-const statItems = document.querySelectorAll('.stat-item h3');
-
-function animateCount(el) {
-    const target = parseInt(el.getAttribute('data-target'), 10) || 0;
-    const suffix = el.getAttribute('data-suffix') || '';
-    const duration = 1600;
-    const start = performance.now();
-
-    function tick(now) {
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const value = Math.round(target * eased);
-        el.textContent = value + suffix;
-        if (progress < 1) {
-            requestAnimationFrame(tick);
-        }
-    }
-    requestAnimationFrame(tick);
-}
-
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.dataset.counted) {
-            entry.target.dataset.counted = 'true';
-            animateCount(entry.target);
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.4 });
-
-statItems.forEach(el => statsObserver.observe(el));
-
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
 
 if (contactForm && formStatus) {
-    contactForm.addEventListener('submit', () => {
-        formStatus.textContent = 'Opening your email client…';
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const isAr = htmlElem.getAttribute('lang') === 'ar';
+        formStatus.textContent = isAr ? 'جاري فتح تطبيق البريد...' : 'Opening email client...';
+        
+        const name = document.getElementById('name').value;
+        const company = document.getElementById('company').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        
+        const subject = encodeURIComponent(`New Inquiry from ${name} - ${company}`);
+        const bodyText = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\nVision:\n${message}`);
+        
+        window.location.href = `mailto:team@thespotsa.co?subject=${subject}&body=${bodyText}`;
+        
+        setTimeout(() => {
+            formStatus.textContent = '';
+            contactForm.reset();
+        }, 3000);
     });
 }
