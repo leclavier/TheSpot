@@ -8,10 +8,12 @@ if (savedTheme === 'light') {
     body.classList.add('light-theme');
 }
 
-themeToggle.addEventListener('click', () => {
-    body.classList.toggle('light-theme');
-    localStorage.setItem('theme', body.classList.contains('light-theme') ? 'light' : 'dark');
-});
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-theme');
+        localStorage.setItem('theme', body.classList.contains('light-theme') ? 'light' : 'dark');
+    });
+}
 
 const savedLang = localStorage.getItem('lang') || 'en';
 setLanguage(savedLang);
@@ -20,48 +22,54 @@ function setLanguage(lang) {
     if (lang === 'ar') {
         htmlElem.setAttribute('dir', 'rtl');
         htmlElem.setAttribute('lang', 'ar');
-        langToggle.textContent = 'EN';
+        if (langToggle) langToggle.textContent = 'EN';
         localStorage.setItem('lang', 'ar');
     } else {
         htmlElem.setAttribute('dir', 'ltr');
         htmlElem.setAttribute('lang', 'en');
-        langToggle.textContent = 'AR';
+        if (langToggle) langToggle.textContent = 'AR';
         localStorage.setItem('lang', 'en');
     }
 }
 
-langToggle.addEventListener('click', () => {
-    const currentLang = htmlElem.getAttribute('lang');
-    setLanguage(currentLang === 'ar' ? 'en' : 'ar');
-});
+if (langToggle) {
+    langToggle.addEventListener('click', () => {
+        const currentLang = htmlElem.getAttribute('lang');
+        setLanguage(currentLang === 'ar' ? 'en' : 'ar');
+    });
+}
 
 const navbar = document.getElementById('navbar');
 let ticking = false;
 
-window.addEventListener('scroll', () => {
-    if (!ticking) {
-        window.requestAnimationFrame(() => {
-            if (window.scrollY > 40) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            ticking = false;
-        });
-        ticking = true;
-    }
-}, { passive: true });
+if (navbar) {
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                if (window.scrollY > 40) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+}
 
 const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.1
+    threshold: 0.15
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('show');
+        } else {
+            entry.target.classList.remove('show');
         }
     });
 }, observerOptions);
