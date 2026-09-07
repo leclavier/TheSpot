@@ -1,12 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,500;100,200;100,400;100,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;800&family=Archivo:wdth,wght@125,500;100,200;100,400;100,700&display=swap');
 
 :root {
     --bg-color: #050505;
+    --bg-color-rgb: 5, 5, 5;
     --text-color: #f6f7fb;
     --accent-color: #d34d27;
+    --accent-color-rgb: 211, 77, 39;
     --surface-color: rgba(255, 255, 255, 0.02);
     --border-color: rgba(255, 255, 255, 0.1);
     --font-primary: 'Archivo', sans-serif;
+    --font-arabic: 'Cairo', sans-serif;
+    --radius-card: 13px;
+    --radius-pill: 999px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.light-theme {
+    --bg-color: #f6f7fb;
+    --bg-color-rgb: 246, 247, 251;
+    --text-color: #1d1c1a;
+    --surface-color: rgba(0, 0, 0, 0.02);
+    --border-color: #e0e0e0;
 }
 
 * {
@@ -21,6 +35,27 @@ body {
     font-family: var(--font-primary);
     line-height: 1.6;
     padding-bottom: 4rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[dir="rtl"] {
+    font-family: var(--font-arabic);
+}
+
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] p,
+[dir="rtl"] a {
+    font-family: var(--font-arabic);
+}
+
+html:not([dir="rtl"]) .lang-ar {
+    display: none !important;
+}
+
+[dir="rtl"] .lang-en {
+    display: none !important;
 }
 
 .legal-header {
@@ -35,6 +70,72 @@ body {
 
 .svg-logo {
     height: 26px;
+}
+
+.light-theme .svg-logo {
+    filter: invert(1) brightness(0.1);
+}
+
+.legal-nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.lang-btn {
+    background: rgba(var(--accent-color-rgb), 0.12);
+    border: 1px solid rgba(var(--accent-color-rgb), 0.3);
+    color: var(--text-color);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 0.78rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+[dir="rtl"] .lang-btn {
+    font-family: var(--font-arabic);
+}
+
+.lang-btn:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    position: relative;
+}
+
+.theme-btn svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.theme-btn .sun-icon {
+    opacity: 0;
+    transform: scale(0.5) rotate(-45deg);
+}
+
+.light-theme .theme-btn .moon-icon {
+    opacity: 0;
+    transform: scale(0.5) rotate(45deg);
+}
+
+.light-theme .theme-btn .sun-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
 }
 
 .back-link {
@@ -60,6 +161,10 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 3rem;
+}
+
+[dir="rtl"] .legal-section {
+    text-align: right;
 }
 
 .legal-section h1 {
@@ -100,7 +205,23 @@ body {
     opacity: 0.5;
 }
 
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 @media (max-width: 680px) {
+    .legal-header {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
     .legal-section {
         padding: 1.75rem;
     }
@@ -108,30 +229,4 @@ body {
     .legal-section h1 {
         font-size: 1.8rem;
     }
-}
-
-[dir="rtl"] {
-    font-family: 'Cairo', sans-serif;
-}
-
-[dir="rtl"] .legal-section {
-    text-align: right;
-}
-
-[dir="rtl"] .legal-section h1,
-[dir="rtl"] .legal-section h2,
-[dir="rtl"] .legal-section p {
-    text-align: right;
-}
-
-[dir="rtl"] .back-link {
-    flex-direction: row-reverse;
-}
-
-html:not([dir="rtl"]) .lang-ar {
-    display: none !important;
-}
-
-[dir="rtl"] .lang-en {
-    display: none !important;
 }
