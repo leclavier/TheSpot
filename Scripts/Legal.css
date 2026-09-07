@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,500;100,200;100,400;100,700&display=swap');
+
+:root {
+    --bg-color: #050505;
+    --text-color: #f6f7fb;
+    --accent-color: #d34d27;
+    --surface-color: rgba(255, 255, 255, 0.02);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --font-primary: 'Archivo', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    padding-bottom: 4rem;
+}
+
+.legal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    border-bottom: 1px solid var(--border-color);
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.svg-logo {
+    height: 26px;
+}
+
+.back-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: opacity 0.3s ease;
+}
+
+.back-link:hover {
+    opacity: 0.8;
+}
+
+.legal-container {
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 0 5%;
+}
+
+.legal-section {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 3rem;
+}
+
+.legal-section h1 {
+    font-size: 2.2rem;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.effective-date {
+    font-size: 0.85rem;
+    opacity: 0.5;
+    margin-bottom: 2rem;
+}
+
+.legal-section h2 {
+    font-size: 1.25rem;
+    margin: 1.8rem 0 0.6rem;
+}
+
+.legal-section p {
+    opacity: 0.8;
+    font-size: 0.98rem;
+}
+
+.legal-divider {
+    border: none;
+    border-top: 1px dashed var(--border-color);
+    margin: 4rem 0;
+}
+
+.legal-footer {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    max-width: 1100px;
+    margin: 0 auto;
+    font-size: 0.85rem;
+    opacity: 0.5;
+}
+
+@media (max-width: 680px) {
+    .legal-section {
+        padding: 1.75rem;
+    }
+
+    .legal-section h1 {
+        font-size: 1.8rem;
+    }
+}
+
+[dir="rtl"] {
+    font-family: 'Cairo', sans-serif;
+}
+
+[dir="rtl"] .legal-section {
+    text-align: right;
+}
+
+[dir="rtl"] .legal-section h1,
+[dir="rtl"] .legal-section h2,
+[dir="rtl"] .legal-section p {
+    text-align: right;
+}
+
+[dir="rtl"] .back-link {
+    flex-direction: row-reverse;
+}
+
+html:not([dir="rtl"]) .lang-ar {
+    display: none !important;
+}
+
+[dir="rtl"] .lang-en {
+    display: none !important;
+}
