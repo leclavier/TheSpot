@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;800&family=Archivo:wdth,wght@125,500;100,200;100,400;100,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;800&family=Archivo:wdth,wght@125,500;100,200;100,400;100,700&display=swap');
 
 :root {
@@ -10,7 +9,7 @@
   --surface-color: rgba(255, 255, 255, 0.02);
   --border-color: rgba(255, 255, 255, 0.1);
   --font-primary: 'Archivo', sans-serif;
-  --font-arabic: 'Almarai', sans-serif;
+  --font-arabic: 'Cairo', sans-serif;
   --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --radius-card: 13px;
@@ -63,7 +62,12 @@ body {
 [dir="rtl"] .primary-display,
 [dir="rtl"] .en-bold,
 [dir="rtl"] .en-regular,
-[dir="rtl"] .btn {
+[dir="rtl"] .btn,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] p {
   font-family: var(--font-arabic);
 }
 
@@ -239,6 +243,10 @@ html:not([dir="rtl"]) .lang-ar {
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: var(--transition);
+}
+
+[dir="rtl"] .lang-btn {
+  font-family: var(--font-arabic);
 }
 
 .lang-btn:hover {
@@ -525,6 +533,11 @@ html:not([dir="rtl"]) .lang-ar {
   position: relative;
 }
 
+[dir="rtl"] .about-card,
+[dir="rtl"] .service-card {
+  text-align: right;
+}
+
 .card-desc {
   margin-top: 1rem;
   font-size: 0.95rem;
@@ -578,6 +591,10 @@ html:not([dir="rtl"]) .lang-ar {
   border-radius: var(--radius-card);
   max-width: 1250px;
   margin: 0 auto;
+}
+
+[dir="rtl"] .contact-wrapper {
+  text-align: right;
 }
 
 .contact-info h2 {
@@ -722,6 +739,10 @@ a.contact-method:hover .contact-method-text p {
   padding-bottom: 3rem;
 }
 
+[dir="rtl"] .footer-top {
+  text-align: right;
+}
+
 .footer-brand p {
   opacity: 0.7;
   margin: 1.2rem 0;
@@ -855,9 +876,9 @@ a.contact-method:hover .contact-method-text p {
 
 @media (max-width: 850px) {
   .navbar {
-    width: min(94%, 600px);
+    width: 100%;
     padding: 0.6rem 1.2rem;
-    top: 12px;
+    top: 0 !important;
   }
 
   .nav-links {
@@ -896,6 +917,12 @@ a.contact-method:hover .contact-method-text p {
     max-width: 280px;
   }
 
+  [dir="rtl"] .stat-card {
+    left: auto;
+    right: auto;
+    margin: 1.5rem auto 0;
+  }
+
   .contact-wrapper {
     grid-template-columns: 1fr;
     padding: 2.5rem 1.5rem;
@@ -906,6 +933,10 @@ a.contact-method:hover .contact-method-text p {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 2rem;
+  }
+
+  [dir="rtl"] .footer-top {
+    text-align: center;
   }
 
   .footer-brand p {
@@ -919,7 +950,7 @@ a.contact-method:hover .contact-method-text p {
 
 @media (max-width: 550px) {
   .navbar {
-    width: 96%;
+    width: 100%;
     padding: 0.5rem 0.8rem;
   }
 
