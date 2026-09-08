@@ -2,6 +2,11 @@ const themeToggle = document.getElementById('theme-toggle');
 const langToggle = document.getElementById('lang-toggle');
 const body = document.body;
 const htmlElem = document.documentElement;
+const navbar = document.getElementById('navbar');
+const statNumbers = document.querySelectorAll('.glitch-stat');
+const statsSection = document.getElementById('stats');
+const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
 
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'light') {
@@ -39,14 +44,12 @@ if (langToggle) {
     });
 }
 
-const navbar = document.getElementById('navbar');
 let ticking = false;
-
 if (navbar) {
     window.addEventListener('scroll', () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
-                if (window.scrollY > 40) {
+                if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {
                     navbar.classList.remove('scrolled');
@@ -58,28 +61,61 @@ if (navbar) {
     }, { passive: true });
 }
 
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.15
+const animateNumbers = () => {
+    statNumbers.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target')) || 0;
+        const suffix = stat.getAttribute('data-suffix') || '';
+        let current = 0;
+        const increment = Math.max(1, Math.ceil(target / 30));
+
+        const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+                stat.innerText = current + suffix;
+                requestAnimationFrame(updateCounter);
+            } else {
+                stat.innerText = target + suffix;
+            }
+        };
+        updateCounter();
+    });
+};
+
+const resetNumbers = () => {
+    statNumbers.forEach(stat => {
+        const suffix = stat.getAttribute('data-suffix') || '';
+        stat.innerText = "0" + suffix;
+    });
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
             entry.target.classList.add('show');
+            
+            if (entry.target.id === 'stats') {
+                animateNumbers();
+            }
         } else {
+            entry.target.style.opacity = "0";
+            entry.target.style.transform = "translateY(30px)";
             entry.target.classList.remove('show');
+            
+            if (entry.target.id === 'stats') {
+                resetNumbers();
+            }
         }
     });
-}, observerOptions);
+}, { threshold: 0.15 });
 
 document.querySelectorAll('.fade-in').forEach(el => {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(30px)";
+    el.style.transition = "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
     observer.observe(el);
 });
-
-const contactForm = document.getElementById('contact-form');
-const formStatus = document.getElementById('form-status');
 
 if (contactForm && formStatus) {
     contactForm.addEventListener('submit', (e) => {
